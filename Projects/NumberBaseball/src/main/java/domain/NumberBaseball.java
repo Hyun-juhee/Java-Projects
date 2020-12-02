@@ -1,25 +1,27 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class NumberBaseball
 {
-    private TargetList targetList;
-    private UserList userList;
+    private ArrayList<Integer> targetList;
+    private ArrayList<Integer> userList;
     private Integer ballCnt = 0;
     private Integer strikeCnt = 0;
     private String result = "";
 
-    public NumberBaseball(TargetList targetList, UserList userList) {
+    public NumberBaseball(ArrayList<Integer> targetList, ArrayList<Integer> userList) {
         this.targetList = targetList;
         this.userList = userList;
 
         for (int i = 0; i < 3; i++) {
-            if (this.targetList.getTargetList().contains(this.userList.getUserList().get(i))) {
+            if (this.targetList.contains(this.userList.get(i))) {
                 this.ballCnt ++;
             }
         }
 
         for (int i = 0; i < 3; i++) {
-            if (this.targetList.getTargetList().get(i) == this.userList.getUserList().get(i)) {
+            if (this.targetList.get(i) == this.userList.get(i)) {
                 this.strikeCnt ++;
             }
         }

@@ -8,17 +8,25 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class TargetList {
+    private final int MAX_NUM = 9;
+    private final int LENGTH = 3;
     private ArrayList<Integer> targetList = new ArrayList<Integer>();
 
     public TargetList() {
+        this.targetList = setTargetList();
+    }
+    private ArrayList<Integer> setTargetList() {
         Random random = new Random();
-        for (int i = 0; i < 3; i++) {
-            Integer temp = random.nextInt(9);
-            while (targetList.contains(temp)) {
-                temp = random.nextInt(9);
+        ArrayList<Integer> randomNumberList = new ArrayList<Integer>();
+
+        for (int i = 0; i < LENGTH; i++) {
+            Integer temp = random.nextInt(MAX_NUM);
+            while (randomNumberList.contains(temp)) {
+                temp = random.nextInt(MAX_NUM);
             }
-            this.targetList.add(temp);
+            randomNumberList.add(temp);
         }
+        return randomNumberList;
     }
 
     public ArrayList<Integer> getTargetList() {
