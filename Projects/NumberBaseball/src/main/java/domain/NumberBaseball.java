@@ -15,14 +15,10 @@ public class NumberBaseball
         this.userList = userList;
 
         for (int i = 0; i < 3; i++) {
-            if (this.targetList.contains(this.userList.get(i))) {
-                this.ballCnt ++;
-            }
-        }
-
-        for (int i = 0; i < 3; i++) {
             if (this.targetList.get(i) == this.userList.get(i)) {
                 this.strikeCnt ++;
+            } else if (this.targetList.contains(this.userList.get(i))) {
+                this.ballCnt ++;
             }
         }
 
