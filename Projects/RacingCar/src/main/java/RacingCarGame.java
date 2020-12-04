@@ -13,10 +13,17 @@ public class RacingCarGame {
     private OutputView outputView = new OutputView();
     private PlayGame playGame = new PlayGame();
     private ArrayList<Integer> maxWinnerIndex = new ArrayList<Integer>();
+    private int tryNumber;
     private final String OK = "ok";
 
-    public void startGame() {
-        // 자동차 이름 input
+    public void play() {
+        buildCar();
+        setTryNumber();
+        eachPlay();
+        printWinner();
+    }
+
+    private void buildCar() {
         String carNames = input.carNames();
         String inputValidateResult = inputValidator.getValidateResult(carNames);
 
@@ -30,11 +37,11 @@ public class RacingCarGame {
         for (String item: carNameList) {
             cars.add(new Car(item));
         }
-
-        // 시행 횟수 input
-        int tryNumber = input.tryNumber();
-
-        // 매 시행마다 return
+    }
+    private void setTryNumber() {
+        tryNumber = input.tryNumber();
+    }
+    private void eachPlay() {
         for (int i = 0; i < tryNumber; i++) {
             for (Car item: cars) {
                 if (playGame.getMove()) {
@@ -44,8 +51,8 @@ public class RacingCarGame {
             }
             System.out.println();
         }
-
-        // 최종 우승자 output
+    }
+    private void printWinner() {
         maxWinnerIndex.add(0);
         for (int i = 1; i < cars.size(); i ++) {
             if (cars.get(i).getPosition() > cars.get(maxWinnerIndex.get(0)).getPosition()) {
